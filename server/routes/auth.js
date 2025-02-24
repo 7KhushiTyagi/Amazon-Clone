@@ -6,4 +6,3 @@ authRouter.get('/user',(req,res)=>{
 })
 
 module.exports=authRouter;
-
