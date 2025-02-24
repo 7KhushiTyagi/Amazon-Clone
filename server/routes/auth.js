@@ -1,20 +1,24 @@
-const express= require('express');
-const authRouter=express.Router();
+const express = require("express");
+const User = require("../models/users");
+const authRouter = express.Router();
 
+authRouter.get("/user", (req, res) => {
+  res.send("User route");
+});
 
-authRouter.get('/user',(req,res)=>{
-    res.send('User route');
-})
+module.exports = authRouter;
 
-module.exports=authRouter;
+authRouter.post("/api/signup", async (req, res) => {
+  
+  const { name, email, password } = req.body;
+  
+  const existingUser = await User.findOne({ email: email });
+  if (existingUser) {
+    return res.status(400).json({ message: "User already exists" });
+  }
 
-authRouter.post('/api/signup',(req,res)=>{
-    //get the data from the user
-    const {name,email,password}= req.body;
-    //post the data in database
-    
-    //return the data to the user
-    
-})
+  
 
-module.exports=authRouter;
+});
+
+module.exports = authRouter;
