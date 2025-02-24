@@ -18,4 +18,3 @@ authRouter.post('/api/signup',(req,res)=>{
 })
 
 module.exports=authRouter;
-
